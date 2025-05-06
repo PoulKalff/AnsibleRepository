@@ -1,0 +1,8 @@
+---
+- name: Fix NAS Exports
+  hosts: NAS
+  become: true
+  tasks:
+  - name: print info
+    ansible.builtin.package:
+      name: apache2
