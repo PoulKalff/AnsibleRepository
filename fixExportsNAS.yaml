@@ -9,10 +9,8 @@
       command: uptime
       register: uptime_result
     - debug: var=uptime_result.stdout_lines
-        msg: "The uptime is {{ uptime_result }}"
 
     - name: Check OS release
       command: cat /etc/os-release
       register: os_result
-    - debug: var=os_result.stdout_lines
-        msg: "The OS is {{ os_result }}"
+    - msg: "The OS is {{ os_result }}"
