@@ -27,11 +27,11 @@
         search_string: "/nfs/8tb_hdd"
         line: '"/nfs/8tb_hdd" *(rw,no_root_squash,sync,no_wdelay,insecure_locks,no_subtree_check)'
 
-    - name: Return motd to registered var
+    - name: Run first exportfs
       ansible.builtin.command: exportfs -a
       register: exportfs_a
 
-    - name: Return motd to registered var
+    - name: Run second exportfs
       ansible.builtin.command: exportfs -r
       register: exportfs_r
 
