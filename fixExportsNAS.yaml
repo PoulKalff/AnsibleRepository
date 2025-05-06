@@ -10,7 +10,32 @@
       register: uptime_result
     - debug: var=uptime_result.stdout_lines
 
-    - name: Check exports
+    - name: Show file contents
+      command: cat /etc/exports
+      register: exports_result
+    - debug: var=exports_result.stdout_lines
+
+    - name: Replace first line
+      ansible.builtin.lineinfile:
+        path: /etc/exports
+        search_string: "/nfs/3tb_hdd"
+        line: '"/nfs/3tb_hdd" *(rw,no_root_squash,sync,no_wdelay,insecure_locks,no_subtree_check)'
+    
+    - name: Replace second line
+      ansible.builtin.lineinfile:
+        path: /etc/exports
+        search_string: "/nfs/8tb_hdd"
+        line: '"/nfs/8tb_hdd" *(rw,no_root_squash,sync,no_wdelay,insecure_locks,no_subtree_check)'
+
+    - name: Return motd to registered var
+      ansible.builtin.command: exportfs -a
+      register: exportfs_a
+
+    - name: Return motd to registered var
+      ansible.builtin.command: exportfs -r
+      register: exportfs_r
+
+    - name: Show file contents
       command: cat /etc/exports
       register: exports_result
     - debug: var=exports_result.stdout_lines
