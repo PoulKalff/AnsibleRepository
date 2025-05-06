@@ -13,4 +13,4 @@
     - name: Check OS release
       command: cat /etc/os-release
       register: os_result
-    - msg: "The OS is {{ os_result }}"
+    - debug: var=os_result.stdout_lines
