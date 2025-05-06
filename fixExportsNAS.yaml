@@ -10,7 +10,7 @@
       register: uptime_result
     - debug: var=uptime_result.stdout_lines
 
-    - name: Check OS release
-      command: cat /etc/os-release
-      register: os_result
-    - debug: var=os_result.stdout_lines
+    - name: Check exports
+      command: cat /etc/exports
+      register: exports_result
+    - debug: var=exports_result.stdout_lines
